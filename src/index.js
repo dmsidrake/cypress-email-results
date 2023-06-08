@@ -74,6 +74,8 @@ function registerCypressEmailResults(on, config, options) {
     throw new Error('Missing required option: on')
   }
 
+  const projectName = options.projectName
+
   const emailSender = options.transport || initEmailTransport()
   if (!emailSender) {
     throw new Error('Could not initialize emailSender')
@@ -162,7 +164,7 @@ function registerCypressEmailResults(on, config, options) {
       })
       .join('\n\n')
 
-    const name = getProjectName()
+    const name = projectName
     const subject = name
       ? `${name} - Cypress tests ${runStatus}`
       : `Cypress tests ${runStatus}`
